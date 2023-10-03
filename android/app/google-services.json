@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "268214204282",
+    "project_id": "kawamobileapp",
+    "storage_bucket": "kawamobileapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268214204282:android:46e9af77ed69bdba5b08c3",
+        "android_client_info": {
+          "package_name": "com.azanalytics.arfurnitureapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvZUpCUaZgDIlwokOzFyhzSwF_hzJglc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
