@@ -82,9 +82,6 @@ class _ItemEditScreenState extends State<ItemEditScreen> {
     }
 
     try {
-      // Convertir le prix en double (vous devriez gérer les erreurs de conversion)
-      double price = double.parse(_itemPriceController.text);
-
       // Mettez à jour le document dans Firestore
       await FirebaseFirestore.instance
           .collection('items')
@@ -92,7 +89,7 @@ class _ItemEditScreenState extends State<ItemEditScreen> {
           .update({
         'itemName': _itemNameController.text,
         'itemDescription': _itemDescriptionController.text,
-        'itemPrice': price,
+        'itemPrice': _itemPriceController.text,
         // Ajoutez ici toutes les autres propriétés que vous souhaitez mettre à jour
       });
 
@@ -104,5 +101,6 @@ class _ItemEditScreenState extends State<ItemEditScreen> {
       print("Error updating item: $e");
     }
   }
+
 
 }
