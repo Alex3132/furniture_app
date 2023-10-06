@@ -22,7 +22,7 @@ void main() {
     testWidgets('renders SignInScreen', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: SignInScreen(),
+          home: const SignInScreen(),
           navigatorObservers: [navigatorObserver],
         ),
       );
