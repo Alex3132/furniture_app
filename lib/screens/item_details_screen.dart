@@ -8,7 +8,7 @@ class ItemDetailsScreen extends StatefulWidget
 {
   Items? clickedItemInfo;
 
-  ItemDetailsScreen({this.clickedItemInfo,});
+  ItemDetailsScreen({this.clickedItemInfo});
 
   @override
   State<ItemDetailsScreen> createState() => _ItemDetailsScreenState();

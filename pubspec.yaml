@@ -43,6 +43,7 @@ dependencies:
   cloud_firestore: ^4.9.2
   augmented_reality_plugin: ^4.0.1
   firebase_auth: ^4.10.0
+  mockito: ^5.4.2
 
 dev_dependencies:
   flutter_test:
