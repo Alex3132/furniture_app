@@ -1,6 +1,8 @@
+import 'package:ar_furniture_app/screens/home_screen.dart';
 import 'package:ar_furniture_app/screens/virtual_ar_view_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fStorage;
+import 'package:fluttertoast/fluttertoast.dart';
 import '../items.dart';
 import 'package:flutter/material.dart';
 
@@ -25,20 +27,20 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Confirmation de suppression"),
-          content: const Text("Voulez-vous vraiment supprimer cet élément ?"),
+          title: const Text("Delete Confirmation"),
+          content: const Text("Do you really want to delete this item?"),
           actions: <Widget>[
             TextButton(
-              child: const Text("Annuler"),
+              child: const Text("Cancel"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: const Text("Supprimer"),
+              child: const Text("Delete"),
               onPressed: () async {
                 try {
-                  // Supprimez l'élément de la base de données Firestore
+                  // Delete item from Firestore database
                   await FirebaseFirestore.instance
                       .collection('items')
                       .doc(widget.clickedItemInfo!.itemID)
@@ -46,30 +48,46 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
 
                   String? imageUrl = widget.clickedItemInfo!.itemImage;
 
-                  print("Image URL : $imageUrl");
-                  // Divisez l'URL par '/' pour obtenir les parties de l'URL
+                  // Split the URL by '/' to get the parts of the URL
                   List<String> urlParts = imageUrl!.split('/');
 
-                  // Récupérez le dernier élément du tableau (qui contient le nom du fichier)
+                  // Get the last element of the array (which contains the file name)
                   String imageFileNameWithExtension = urlParts.last;
 
-                  // Supprimez l'extension du nom du fichier
+                  // Remove the extension from the file name
                   int indexOfQuestionMark = imageFileNameWithExtension.indexOf('?');
                   String imageFileName = imageFileNameWithExtension.substring(0, indexOfQuestionMark);
                   imageFileName = imageFileName.replaceAll("Items%20Images%2F", "");
 
-                  print("Nom du fichier de l'image : $imageFileName");
                   await fStorage.FirebaseStorage.instance
                       .ref()
                       .child('Items Images')
                       .child(imageFileName!)
                       .delete();
-                  Navigator.of(context).pop();
-                  // Après la suppression, revenez à l'écran précédent.
-                  Navigator.of(context).pop();
+
+                  Navigator.of(context).pop();  // Close the dialog
+                  Navigator.of(context).pop();  // Go back to the previous screen
+
+                  // Show the toast message
+                  Fluttertoast.showToast(
+                      msg: "Item deleted successfully",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
+
+                  // Navigate to the home page
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
                 } catch (e) {
-                  print("Erreur lors de la suppression : $e");
-                  // Gérez les erreurs de suppression ici.
+                  print("Error while deleting: $e");
+                  // Handle deletion errors here.
                 }
               },
             ),
@@ -78,6 +96,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
       },
     );
   }
+
 
 
   @override
