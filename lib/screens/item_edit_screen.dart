@@ -1,65 +1,69 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ar_furniture_app/items.dart';
+import 'package:flutter/material.dart';
+import 'package:ar_furniture_app/items.dart'; // Assurez-vous que le chemin d'importation est correct
 
 class ItemEditScreen extends StatefulWidget {
-  final DocumentSnapshot item;
-  final Items clickedItemInfo;
+  final Items? clickedItemInfo;
 
-  ItemEditScreen({required this.item, required this.clickedItemInfo});
+  ItemEditScreen({this.clickedItemInfo});
 
   @override
   _ItemEditScreenState createState() => _ItemEditScreenState();
 }
 
 class _ItemEditScreenState extends State<ItemEditScreen> {
-  TextEditingController itemNameController = TextEditingController();
-  TextEditingController itemDescriptionController = TextEditingController();
-  TextEditingController itemPriceController = TextEditingController();
+  late TextEditingController _itemNameController;
+  late TextEditingController _itemDescriptionController;
+  late TextEditingController _itemPriceController;
 
   @override
   void initState() {
     super.initState();
-    // Pre-fill the text fields with existing data
-    itemNameController.text = widget.clickedItemInfo.itemName ?? "";
-    itemDescriptionController.text = widget.clickedItemInfo.itemDescription ?? "";
-    itemPriceController.text = widget.clickedItemInfo.itemPrice ?? "";
+    _itemNameController = TextEditingController(text: widget.clickedItemInfo?.itemName);
+    _itemDescriptionController = TextEditingController(text: widget.clickedItemInfo?.itemDescription);
+    _itemPriceController = TextEditingController(text: widget.clickedItemInfo?.itemPrice.toString());
+  }
+
+  @override
+  void dispose() {
+    _itemNameController.dispose();
+    _itemDescriptionController.dispose();
+    _itemPriceController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Edit Item"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: _saveItemChanges,
-          )
-        ],
+        title: Text('Edit ${widget.clickedItemInfo?.itemName}'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              controller: itemNameController,
-              decoration: const InputDecoration(labelText: "Item Name"),
+              controller: _itemNameController,
+              decoration: InputDecoration(
+                labelText: 'Item Name',
+              ),
             ),
-            const SizedBox(height: 10),
             TextField(
-              controller: itemDescriptionController,
-              decoration: const InputDecoration(labelText: "Description"),
+              controller: _itemDescriptionController,
+              decoration: InputDecoration(
+                labelText: 'Item Description',
+              ),
             ),
-            const SizedBox(height: 10),
             TextField(
-              controller: itemPriceController,
-              decoration: const InputDecoration(labelText: "Price"),
+              controller: _itemPriceController,
+              decoration: InputDecoration(
+                labelText: 'Item Price',
+              ),
             ),
-            const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: _saveItemChanges,
-              child: const Text("Save Changes"),
+              onPressed: _saveItem,
+              child: Text('Save'),
             ),
           ],
         ),
@@ -67,18 +71,38 @@ class _ItemEditScreenState extends State<ItemEditScreen> {
     );
   }
 
-  void _saveItemChanges() {
-    final updatedItem = {
-      'itemName': itemNameController.text,
-      'itemDescription': itemDescriptionController.text,
-      'itemPrice': itemPriceController.text,
-    };
+  void _saveItem() async {
+    // Validation des champs
+    if (_itemNameController.text.isEmpty ||
+        _itemDescriptionController.text.isEmpty ||
+        _itemPriceController.text.isEmpty) {
+      // Vous pouvez montrer une alerte ou un message ici
+      print("All fields are required.");
+      return;
+    }
 
-    FirebaseFirestore.instance
-        .collection('items')
-        .doc(widget.clickedItemInfo.itemID)
-        .update(updatedItem)
-        .then((value) => Navigator.pop(context))
-        .catchError((error) => print("Failed to update item: $error"));
+    try {
+      // Convertir le prix en double (vous devriez gérer les erreurs de conversion)
+      double price = double.parse(_itemPriceController.text);
+
+      // Mettez à jour le document dans Firestore
+      await FirebaseFirestore.instance
+          .collection('items')
+          .doc(widget.clickedItemInfo?.itemID) // Utilisez l'ID de l'élément ici
+          .update({
+        'itemName': _itemNameController.text,
+        'itemDescription': _itemDescriptionController.text,
+        'itemPrice': price,
+        // Ajoutez ici toutes les autres propriétés que vous souhaitez mettre à jour
+      });
+
+      // Optionnel : Affichez un message de succès et revenez à l'écran précédent
+      print("Item updated successfully");
+      Navigator.of(context).pop();
+    } catch (e) {
+      // Gérez les erreurs ici (par exemple, affichez un message d'erreur)
+      print("Error updating item: $e");
+    }
   }
+
 }

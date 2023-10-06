@@ -6,11 +6,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../items.dart';
 import 'package:flutter/material.dart';
 
+import 'item_edit_screen.dart';
+
 class ItemDetailsScreen extends StatefulWidget
 {
   Items? clickedItemInfo;
 
-  ItemDetailsScreen({this.clickedItemInfo});
+  ItemDetailsScreen({required this.clickedItemInfo});
 
   @override
   State<ItemDetailsScreen> createState() => _ItemDetailsScreenState();
@@ -21,6 +23,18 @@ class ItemDetailsScreen extends StatefulWidget
 
 class _ItemDetailsScreenState extends State<ItemDetailsScreen>
 {
+
+  void _navigateToEditItem(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ItemEditScreen(
+          clickedItemInfo: widget.clickedItemInfo,
+        ),
+      ),
+    );
+  }
+
   // Fonction pour confirmer et effectuer la suppression
   void _confirmAndDeleteItem() {
     showDialog(
@@ -115,6 +129,12 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
             icon: const Icon(Icons.delete),
             onPressed: () {
               _confirmAndDeleteItem();
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              _navigateToEditItem(context);
             },
           ),
         ],
