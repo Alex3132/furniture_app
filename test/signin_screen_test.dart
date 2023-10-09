@@ -20,12 +20,7 @@ void main() {
     });
 
     testWidgets('renders SignInScreen', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: const SignInScreen(),
-          navigatorObservers: [navigatorObserver],
-        ),
-      );
+      await tester.pumpWidget(const SignInScreen());
 
       expect(find.text('Sign In'), findsOneWidget);
       expect(find.byType(TextField), findsNWidgets(2));

@@ -41,7 +41,7 @@ void main() {
       };
       final item = Items.fromJson(json);
 
-      expect(item.itemID, '');
+      expect(item.itemID, '124');
       expect(item.itemName, '');
       expect(item.itemDescription, '');
       expect(item.itemImage, '');
