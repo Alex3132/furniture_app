@@ -25,6 +25,8 @@ void main() {
       expect(item.sellerName, 'John Doe');
       expect(item.sellerPhone, '1234567890');
       expect(item.itemPrice, "150.0");
+      expect(item.createdAt, DateTime(2023, 10, 4));
+
       // La vérification pour createdAt pourrait nécessiter une conversion de la date.
       expect(item.status, 'Available');
     });
