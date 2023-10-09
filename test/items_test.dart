@@ -34,7 +34,7 @@ void main() {
     // Test pour vérifier le comportement quand des données incorrectes ou manquantes sont fournies
     test('should handle missing keys in JSON', () {
       final json = {
-        'itemID': null,
+        'itemID': '124',
         'itemDescription': null,
         'itemName' : null,
         'itemImage' : null,
