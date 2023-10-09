@@ -50,14 +50,14 @@ void main() {
       final item = Items.fromJson(json);
 
       expect(item.itemID, '124');
-      expect(item.itemName, '');
-      expect(item.itemDescription, '');
-      expect(item.itemImage, '');
-      expect(item.sellerName, '');
-      expect(item.sellerPhone, '');
-      expect(item.itemPrice, "0.0");
-      expect(item.createdAt, '');
-      expect(item.status, '');
+      expect(item.itemName, null);
+      expect(item.itemDescription, null);
+      expect(item.itemImage, null);
+      expect(item.sellerName, null);
+      expect(item.sellerPhone, null);
+      expect(item.itemPrice, null);
+      expect(item.createdAt, null);
+      expect(item.status, null);
     });
   });
 }
