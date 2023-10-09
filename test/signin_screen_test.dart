@@ -20,7 +20,8 @@ void main() {
     });
 
     testWidgets('renders SignInScreen', (WidgetTester tester) async {
-      await tester.pumpWidget(const SignInScreen());
+      await tester.pumpWidget(const MaterialApp(home: SignInScreen()));
+
 
       expect(find.text('Sign In'), findsOneWidget);
       expect(find.byType(TextField), findsNWidgets(2));
@@ -49,21 +50,17 @@ void main() {
     });
 
     testWidgets('navigates to SignUpScreen on tap', (WidgetTester tester) async {
-      final fakeObserver = FakeNavigatorObserver();
+      // Build the SignInScreen widget inside a MaterialApp.
+      await tester.pumpWidget(const MaterialApp(home: SignInScreen()));
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: const SignInScreen(),
-          navigatorObservers: [fakeObserver],
-        ),
-      );
-
+      // Tap on the "Sign Up" text.
       await tester.tap(find.text('Sign Up'));
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle();  // Allow navigation and animations to complete
 
-      // Verify that a push event happened on navigator
-      expect(fakeObserver.pushCount, 1);
+      // Check if navigated to SignUpScreen.
+      expect(find.text('Text on SignUpScreen'), findsOneWidget);
     });
+
 
     // ... Other tests
   });
