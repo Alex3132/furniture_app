@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ar_furniture_app/items.dart';
 
+
 void main() {
   group('Items', () {
     // Test de la création d'une instance à partir d'un JSON
