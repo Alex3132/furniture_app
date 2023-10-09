@@ -12,7 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
@@ -30,3 +35,4 @@ jobs:
           asset_path: build/app/outputs/flutter-apk/app-release.apk
           asset_name: app-release.apk
           asset_content_type: application/vnd.android.package-archive
+
