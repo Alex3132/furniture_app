@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../items.dart';
 import 'package:flutter/material.dart';
 
-import 'item_edit_screen.dart';
+import '../crud/item_edit_screen.dart';
 
 class ItemDetailsScreen extends StatefulWidget
 {
@@ -72,6 +72,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
                   int indexOfQuestionMark = imageFileNameWithExtension.indexOf('?');
                   String imageFileName = imageFileNameWithExtension.substring(0, indexOfQuestionMark);
                   imageFileName = imageFileName.replaceAll("Items%20Images%2F", "");
+
+                  print(imageFileName);
 
                   await fStorage.FirebaseStorage.instance
                       .ref()

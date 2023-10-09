@@ -1,4 +1,4 @@
-import 'package:ar_furniture_app/screens/item_details_screen.dart';
+import 'package:ar_furniture_app/crud/item_details_screen.dart';
 import "package:ar_furniture_app/items.dart";
 import "package:flutter/material.dart";
 

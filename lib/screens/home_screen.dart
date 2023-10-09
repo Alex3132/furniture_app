@@ -1,5 +1,5 @@
 import 'package:ar_furniture_app/items_ui_design_widget.dart';
-import 'package:ar_furniture_app/screens/items_upload_screen.dart';
+import 'package:ar_furniture_app/crud/items_upload_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_furniture_app/screens/signin_screen.dart';
