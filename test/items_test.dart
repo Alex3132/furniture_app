@@ -36,7 +36,14 @@ void main() {
       final json = {
         'itemID': '124',
         'itemDescription': 'A wooden table',
-        // 'itemName' manquant
+        'itemName' : null,
+        'itemImage' : null,
+        'sellerName' : null,
+        'sellerPhone' : null,
+        'itemPrice' : null,
+        'createdAt': null,
+        'status': null
+
         // 'itemImage' manquant
         // ... autres clés manquantes
       };
