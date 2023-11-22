@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Items{
@@ -12,7 +10,7 @@ class Items{
   String? itemPrice;
   Timestamp? createdAt;
   String? status;
-  Int? stock;
+  String? stock;
 
 
 
