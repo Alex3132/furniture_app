@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Items{
@@ -10,6 +12,7 @@ class Items{
   String? itemPrice;
   Timestamp? createdAt;
   String? status;
+  Int? stock;
 
 
 
@@ -23,6 +26,7 @@ class Items{
     this.sellerPhone,
     this.itemPrice,
     this.createdAt,
+    this.stock,
     this.status
 
 });
@@ -37,6 +41,7 @@ class Items{
     sellerPhone = json["sellerPhone"];
     itemPrice = json["itemPrice"];
     createdAt = json["createdAt"];
+    stock = json["stock"];
     status = json["status"];
   }
 }

@@ -27,6 +27,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   TextEditingController itemNameTextEditingController = TextEditingController();
   TextEditingController itemDescriptionTextEditingController = TextEditingController();
   TextEditingController itemPriceTextEditingController = TextEditingController();
+  TextEditingController stockTextEditingController = TextEditingController();
 
 
   bool isUploading = false;
@@ -221,6 +222,29 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
             color : Colors.white70,
             thickness: 1,
           ),
+          //stock
+          ListTile(
+            leading: const Icon(
+              Icons.price_change,
+              color: Colors.white,
+            ),
+            title: SizedBox(
+                width : 250,
+                child : TextField(
+                  style: const TextStyle(color: Colors.grey),
+                  controller: stockTextEditingController,
+                  decoration: const InputDecoration(
+                    hintText: "item price",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none,
+                  ),
+                )
+            ),
+          ),
+          const Divider(
+            color : Colors.white70,
+            thickness: 1,
+          ),
         ],
       ),
     );
@@ -230,7 +254,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
     if(imageFileUint8List != null){
       if(sellerNameTextEditingController.text.isNotEmpty && sellerPhoneTextEditingController.text.isNotEmpty
       && itemNameTextEditingController.text.isNotEmpty && itemDescriptionTextEditingController.text.isNotEmpty
-      && itemPriceTextEditingController.text.isNotEmpty){
+      && itemPriceTextEditingController.text.isNotEmpty && stockTextEditingController.text.isNotEmpty){
         setState(() {
           isUploading = true;
         });
@@ -272,6 +296,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
       "sellerName":sellerNameTextEditingController.text,
       "sellerPhone":sellerPhoneTextEditingController.text,
       "itemPrice":itemPriceTextEditingController.text,
+      "stock" : stockTextEditingController.text,
       "createdAt": DateTime.now(),
       "status": "available"
 
