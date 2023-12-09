@@ -17,8 +17,8 @@ exports.createItem = functions.https.onRequest(async (req, res) => {
       status: req.body.status,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     };
-    const docRef = await db.collection('items').add(item);
-    res.status(201).send({ itemID: docRef.id });
+    const docRef = await db.collection("items").add(item);
+    res.status(201).send({itemID: docRef.id});
   } catch (e) {
     res.status(400).send(e.message);
   }
@@ -28,10 +28,10 @@ exports.createItem = functions.https.onRequest(async (req, res) => {
 // READ: Récupérer tous les éléments
 exports.getItems = functions.https.onRequest(async (req, res) => {
   try {
-    const snapshot = await db.collection('items').get();
+    const snapshot = await db.collection("items").get();
     const items = [];
-    snapshot.forEach(doc => {
-      items.push({ id: doc.id, data: doc.data() });
+    snapshot.forEach((doc) => {
+      items.push({id: doc.id, data: doc.data()});
     });
     res.status(200).send(items);
   } catch (e) {
@@ -44,7 +44,7 @@ exports.updateItem = functions.https.onRequest(async (req, res) => {
   try {
     const itemId = req.params.id;
     const item = req.body;
-    await db.collection('items').doc(itemId).update(item);
+    await db.collection("items").doc(itemId).update(item);
     res.status(200).send();
   } catch (e) {
     res.status(400).send(e.message);
@@ -55,7 +55,7 @@ exports.updateItem = functions.https.onRequest(async (req, res) => {
 exports.deleteItem = functions.https.onRequest(async (req, res) => {
   try {
     const itemId = req.params.id;
-    await db.collection('items').doc(itemId).delete();
+    await db.collection("items").doc(itemId).delete();
     res.status(200).send();
   } catch (e) {
     res.status(400).send(e.message);
