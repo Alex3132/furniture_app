@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "alexapiepsi"
-  }
+    "default": "kawamobileapp",
+    "kawa": "kawamobileapp"
+  },
+  "targets": {},
+  "etags": {}
 }
