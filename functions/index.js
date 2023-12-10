@@ -38,7 +38,7 @@ exports.getItems = functions.https.onRequest(async (req, res) => {
     res.status(400).send(e.message);
   }
 });
-
+const itemId = req.query.id;
 // UPDATE: Mettre à jour un élément par ID
 exports.updateItem = functions.https.onRequest(async (req, res) => {
   try {
@@ -54,10 +54,11 @@ exports.updateItem = functions.https.onRequest(async (req, res) => {
 // DELETE: Supprimer un élément par ID
 exports.deleteItem = functions.https.onRequest(async (req, res) => {
   try {
-    const itemId = req.params.id;
+    const itemId = req.query.id; // ou req.params.id, en fonction de la structure de l'URL
     await db.collection("items").doc(itemId).delete();
-    res.status(200).send();
+    res.status(200).send("Item deleted successfully");
   } catch (e) {
     res.status(400).send(e.message);
   }
 });
+
