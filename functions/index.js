@@ -55,7 +55,6 @@ exports.updateItem = functions.https.onRequest(async (req, res) => {
 exports.deleteItem = functions.https.onRequest(async (req, res) => {
   try {
     const itemId = req.params.id; // ou req.params.id
-    console.log("Item ID:", itemId); // Ajouter cette ligne pour le debug
     await db.collection("items").doc(itemId).delete();
     res.status(200).send("Item deleted successfully");
   } catch (e) {
