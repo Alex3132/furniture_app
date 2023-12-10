@@ -38,7 +38,7 @@ exports.getItems = functions.https.onRequest(async (req, res) => {
     res.status(400).send(e.message);
   }
 });
-const itemId = req.query.id;
+
 // UPDATE: Mettre à jour un élément par ID
 exports.updateItem = functions.https.onRequest(async (req, res) => {
   try {
