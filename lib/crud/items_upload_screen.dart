@@ -287,8 +287,9 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   }
 
   saveItemInfoToFirestone(){
-    String itemUniqueId = DateTime.now().millisecondsSinceEpoch.toString();
-    FirebaseFirestore.instance.collection("items").doc(itemUniqueId).set({
+    int itemUniqueId = DateTime.now().millisecondsSinceEpoch;
+    //String itemUniqueId = DateTime.now().millisecondsSinceEpoch.toString();
+    FirebaseFirestore.instance.collection("items").doc(itemUniqueId.toString()).set({
       "itemID" : itemUniqueId,
       "itemName": itemNameTextEditingController.text,
       "itemDescription" : itemDescriptionTextEditingController.text,
