@@ -70,7 +70,7 @@ exports.deleteItem = functions.https.onRequest(async (req, res) => {
 
     await db.collection("items").doc(itemId).delete();
     res.status(200).send("Item deleted successfully");
-    // Reste du code...
+
   } catch (e) {
     console.error("Error:", e);
     res.status(400).send(e.message);
