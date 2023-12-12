@@ -288,6 +288,17 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
   saveItemInfoToFirestone(){
     String itemUniqueId = DateTime.now().millisecondsSinceEpoch.toString();
+    print("itemUniqueId (should be String): $itemUniqueId");
+
+    // Imprimer les valeurs des contrôleurs de texte pour s'assurer qu'elles sont toutes des chaînes
+    print("sellerName: ${sellerNameTextEditingController.text}");
+    print("sellerPhone: ${sellerPhoneTextEditingController.text}");
+    print("itemName: ${itemNameTextEditingController.text}");
+    print("itemDescription: ${itemDescriptionTextEditingController.text}");
+    print("itemPrice: ${itemPriceTextEditingController.text}");
+    print("stock: ${stockTextEditingController.text}");
+
+
     FirebaseFirestore.instance.collection("items").doc(itemUniqueId).set({
       "itemID" : itemUniqueId,
       "itemName": itemNameTextEditingController.text,
@@ -299,6 +310,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
       "stock" : stockTextEditingController.text,
       "createdAt": DateTime.now(),
       "status": "available"
+
 
     });
 
