@@ -52,25 +52,11 @@ exports.updateItem = functions.https.onRequest(async (req, res) => {
 });
 
 // DELETE: Supprimer un élément par ID
-/*exports.deleteItem = functions.https.onRequest(async (req, res) => {
+exports.deleteItem = functions.https.onRequest(async (req, res) => {
   try {
     const itemId = req.params.id; // ou req.params.id
     await db.collection("items").doc(itemId).delete();
     res.status(200).send("Item deleted successfully");
-  } catch (e) {
-    console.error("Error:", e);
-    res.status(400).send(e.message);
-  }
-});*/
-exports.deleteItem = functions.https.onRequest(async (req, res) => {
-  try {
-    console.log("Request received with query:", req.query);
-    const itemId = req.query.id;
-    console.log("Deleting item with ID:", itemId);
-
-    await db.collection("items").doc(itemId).delete();
-    res.status(200).send("Item deleted successfully");
-
   } catch (e) {
     console.error("Error:", e);
     res.status(400).send(e.message);
