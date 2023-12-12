@@ -12,7 +12,7 @@ class ItemDetailsScreen extends StatefulWidget
 {
   Items? clickedItemInfo;
 
-  ItemDetailsScreen({required this.clickedItemInfo});
+  ItemDetailsScreen({super.key, required this.clickedItemInfo});
 
   @override
   State<ItemDetailsScreen> createState() => _ItemDetailsScreenState();
@@ -78,7 +78,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
                   await fStorage.FirebaseStorage.instance
                       .ref()
                       .child('Items Images')
-                      .child(imageFileName!)
+                      .child(imageFileName)
                       .delete();
 
                   Navigator.of(context).pop();  // Close the dialog
@@ -98,7 +98,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
                   // Navigate to the home page
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
+                      builder: (context) => const HomeScreen(),
                     ),
                   );
                 } catch (e) {
@@ -134,7 +134,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
             },
           ),
           IconButton(
-            icon: Icon(Icons.edit),
+            icon: const Icon(Icons.edit),
             onPressed: () {
               _navigateToEditItem(context);
             },

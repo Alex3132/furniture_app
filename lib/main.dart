@@ -8,7 +8,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   }catch (errorMsg){
-    print("Error : "+ errorMsg.toString());
+    print("Error : $errorMsg");
   }
   runApp(const MyApp());
 }

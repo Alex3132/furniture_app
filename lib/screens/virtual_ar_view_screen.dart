@@ -6,7 +6,7 @@ class VirtualARViewScreen extends StatefulWidget
 {
   String? clickedItemImageLink;
 
-  VirtualARViewScreen({this.clickedItemImageLink,});
+  VirtualARViewScreen({super.key, this.clickedItemImageLink,});
 
   @override
   State<VirtualARViewScreen> createState() => _VirtualARViewScreenState();

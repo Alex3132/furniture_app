@@ -5,7 +5,7 @@ import 'package:ar_furniture_app/items.dart'; // Assurez-vous que le chemin d'im
 class ItemEditScreen extends StatefulWidget {
   final Items? clickedItemInfo;
 
-  ItemEditScreen({this.clickedItemInfo});
+  const ItemEditScreen({super.key, this.clickedItemInfo});
 
   @override
   _ItemEditScreenState createState() => _ItemEditScreenState();
@@ -45,25 +45,25 @@ class _ItemEditScreenState extends State<ItemEditScreen> {
           children: [
             TextField(
               controller: _itemNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Item Name',
               ),
             ),
             TextField(
               controller: _itemDescriptionController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Item Description',
               ),
             ),
             TextField(
               controller: _itemPriceController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Item Price',
               ),
             ),
             ElevatedButton(
               onPressed: _saveItem,
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         ),

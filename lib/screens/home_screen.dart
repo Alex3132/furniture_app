@@ -88,11 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
               MaterialPageRoute(builder: (context) => const SignInScreen()),
             );
           });
-        },
-        child: const Icon(Icons.logout), // Icône de déconnexion
+        }, // Icône de déconnexion
         backgroundColor: Colors.red, // Couleur du bouton
         foregroundColor: Colors.white, // Couleur de l'icône
-        tooltip: "Logout", // Info-bulle au survol
+        tooltip: "Logout",
+        child: const Icon(Icons.logout), // Info-bulle au survol
       ),
     );
   }

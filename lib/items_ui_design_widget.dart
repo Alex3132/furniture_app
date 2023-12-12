@@ -10,7 +10,7 @@ class ItemUIDesignWidget extends StatefulWidget {
   BuildContext? context;
 
 
-  ItemUIDesignWidget({this.itemsInfo, this.context});
+  ItemUIDesignWidget({super.key, this.itemsInfo, this.context});
 
 
   @override

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ar_furniture_app/reusable_widgets/reusable_widget.dart';
-import 'package:ar_furniture_app/screens/home_screen.dart';
 import 'package:ar_furniture_app/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
